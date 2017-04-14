@@ -1,0 +1,13 @@
+- hosts: localhost
+  connection: local
+  gather_facts: False
+
+  tasks:
+
+  - ec2_vpc_net:
+      name: ELK_STACK
+      cidr_block: 10.20.0.0/24
+      region: us-east-1
+      tags:
+        purpose: fender_job
+      tenancy: dedicated
