@@ -1,0 +1,11 @@
+# Enabling ssl and configuring Filebeat to send the logs to Logstash
+filebeat.prospectors:
+
+- input_type: log
+
+  paths:
+    - /var/log/*.log
+output.logstash:
+  hosts: ["elk-fender.vcali.com:5044"]
+  bulk_max_size: 2048
+  ssl.certificate_authorities: ["/root/cert-beats/logstash-beats.crt"]
