@@ -1,0 +1,9 @@
+- hosts: localhost
+  connection: local
+  gather_facts: False
+
+  tasks:
+  
+    - include: create_vpc.yml
+    - include: create_subnets.yml
+    - include: deploy_ec2.yml

@@ -1,0 +1,31 @@
+- ec2_vpc_net_facts:
+    filters:
+      "tag:Name": ELK_STACK
+  register: vpc_facts
+
+- set_fact:
+    my_vpc_id: "{{ vpc_facts.vpcs.0.id }}"
+
+- name: Creating Subnet For Logstash
+  ec2_vpc_subnet:
+    state: present
+    vpc_id: "{{ my_vpc_id }}" 
+    cidr: 10.20.0.0/28
+    resource_tags:
+      Name: Logstash Subnet
+
+- name: Creating Subnet For ElasticSearch
+  ec2_vpc_subnet:
+    state: present
+    vpc_id: "{{ my_vpc_id }}"
+    cidr: 10.20.1.0/28
+    resource_tags:
+      Name: ElasticSearch Subnet
+
+- name: Creating Subnet For Kibana
+  ec2_vpc_subnet:
+    state: present
+    vpc_id: "{{ my_vpc_id }}"
+    cidr: 10.20.2.0/28
+    resource_tags:
+      Name: Kibana Subnet
