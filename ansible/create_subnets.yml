@@ -8,7 +8,7 @@
   set_fact:
     my_vpc_id: "{{ vpc_facts.vpcs.0.id }}"
 
-- name: Creating subnet sor Logstash
+- name: Creating subnet for Logstash
   ec2_vpc_subnet:
     state: present
     vpc_id: "{{ my_vpc_id }}" 
