@@ -13,7 +13,7 @@
   ec2:
     key_name: key-vcali-nvirg
     instance_type: t2.micro
-    image: ami-22ce4934 ## Amazon Linux
+    image: ami-22ce4934 # Amazon Linux
     wait: yes
     group: logstash_group
     instance_tags:
@@ -40,7 +40,7 @@
   ec2:
     key_name: key-vcali-nvirg
     instance_type: t2.micro
-    image: ami-22ce4934 ## Amazon Linux
+    image: ami-22ce4934 # Amazon Linux
     wait: yes
     instance_tags:
         Name: ElasticSearch
@@ -66,7 +66,7 @@
   ec2:
     key_name: key-vcali-nvirg
     instance_type: t2.micro
-    image: ami-22ce4934 ## Amazon Linux
+    image: ami-22ce4934 # Amazon Linux
     wait: yes
     group: kibana_group
     instance_tags:

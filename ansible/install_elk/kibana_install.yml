@@ -11,6 +11,9 @@
     baseurl: https://artifacts.elastic.co/packages/5.x/yum
     gpgcheck: yes
 
+- name: Removing Amzn repository
+  shell: /bin/rm -f /etc/yum.repos.d/amzn*
+
 - name: Installing Kibana 
   yum:
     name: kibana
