@@ -1,8 +1,6 @@
-- name: Copying configuration files to Logstash
-  copy: src=/ansible/files/logstash/conf.d/ dest=/etc/logstash/conf.d/
-  with_items:
-    - { src=/ansible/files/logstash/certs/ dest=/etc/logstash/certs/ }
-
+#- name: Copying configuration files to Logstash
+#- copy: src=/ansible/files/logstash/conf.d/ dest=/etc/logstash/conf.d/
+#- copy: src=/ansible/files/logstash/certs/ dest=/etc/logstash/certs/
 
 - name: Downloading Java 8
   get_url:
@@ -19,8 +17,8 @@
   environment:
     JAVA_HOME: /usr/java/latest
 
-- name: Starting Logstash
+- name: Starting  ElasticSearch
   service:
-    name: logstash
+    name: elasticsearch
     state: started
     enabled: yes
