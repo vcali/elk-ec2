@@ -5,3 +5,16 @@
   tasks:
     - include: install_elk/logstash_install.yml
 
+- hosts: group_elasticsearch
+  user: ec2-user
+  become: true
+
+  tasks:
+    - include: install_elk/elasticsearch_install.yml
+
+- hosts: group_kibana
+  user: ec2-user
+  become: true
+
+  tasks:
+    - include: install_elk/kibana_install.yml

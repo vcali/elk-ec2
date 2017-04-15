@@ -11,7 +11,7 @@
     baseurl: https://artifacts.elastic.co/packages/5.x/yum
     gpgcheck: yes
 
-- name: Installing Logstash
+- name: Installing ElasticSearch 
   yum:
-    name: logstash
+    name: elasticsearch
     state: latest
