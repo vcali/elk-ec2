@@ -9,8 +9,35 @@
         to_port: 5044
         cidr_ip: 187.101.86.246/32
     rules_egress:
-    # Defining rules for Logstash to be able to access Elasticsearch
       - proto: tcp
         from_port: 9200
         to_port: 9200
         cidr_ip: 10.20.1.0/28
+
+- name: Creating security group for Elasticsearch
+  ec2_group:
+    name: elasticsearch_group
+    description: Elasticsearch security group
+    vpc_id: "{{ my_vpc_id }}"
+    rules:
+      - proto: tcp
+        from_port: 9200
+        to_port: 9200
+        cidr_ip: 10.20.0.0/20
+
+- name: Creating security group for Kibana 
+  ec2_group:
+    name: kibana_group
+    description: Kibana security group
+    vpc_id: "{{ my_vpc_id }}"
+    rules:
+      - proto: tcp
+        from_port: 80 
+        to_port: 80
+        cidr_ip: 187.101.86.246/32
+    rules_egress:
+      - proto: tcp
+        from_port: 9200
+        to_port: 9200
+        cidr_ip: 10.20.1.0/28
+
