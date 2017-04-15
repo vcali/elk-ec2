@@ -1,7 +1,8 @@
 - hosts: group_logstash
   user: ec2-user
   become: true
-
+  vars:
+    elasticsearch_private_ip: "{{ lookup('file', 'elasticsearch_private_ip') }}"
   tasks:
     - include: install_elk/logstash_install.yml
     - include: install_elk/logstash_config.yml
@@ -9,7 +10,6 @@
 - hosts: group_elasticsearch
   user: ec2-user
   become: true
-
   tasks:
     - include: install_elk/elasticsearch_install.yml
     - include: install_elk/elasticsearch_config.yml
@@ -17,7 +17,6 @@
 - hosts: group_kibana
   user: ec2-user
   become: true
-
   tasks:
     - include: install_elk/kibana_install.yml
     - include: install_elk/kibana_config.yml

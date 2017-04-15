@@ -3,6 +3,11 @@
   with_items:
     - { src=/ansible/files/logstash/certs/ dest=/etc/logstash/certs/ }
 
+- name: Filling template witch ElasticSearch instance IP
+  template:
+    src: /ansible/files/logstash/templates/30-elasticsearch-output.conf.jinja2
+    dest: /etc/logstash/conf.d/30-elasticsearch-output.conf
+
 
 - name: Downloading Java 8
   get_url:
