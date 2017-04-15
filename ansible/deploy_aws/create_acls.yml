@@ -1,4 +1,4 @@
-# Allowing instances to access ELK repository
+# Allowing instances to access ELK repository and to Oracle
 - name: Creating Network ACLs for Logstash
   ec2_vpc_nacl:
     vpc_id: "{{ my_vpc_id  }}"
@@ -12,6 +12,9 @@
       [103, 'tcp', 'allow', '107.21.249.70/32', null, null, 1024, 65535],
       [104, 'tcp', 'allow', '107.22.208.105/32', null, null, 1024, 65535],
       [105, 'tcp', 'allow', '54.243.211.74/32', null, null, 1024, 65535],
+      [106, 'tcp', 'allow', '104.96.220.152/32', null, null, 1024, 65535],
+      [107, 'tcp', 'allow', '104.96.220.162/32', null, null, 1024, 65535],
+      [108, 'tcp', 'allow', '104.112.43.81/32', null, null, 1024, 65535],
     ]
     egress: [
       [100, 'tcp', 'allow', '10.20.1.0/28', null, null, 9200, 9200],
@@ -22,6 +25,9 @@
       [105, 'tcp', 'allow', '107.22.208.105/32', null, null, 443, 443],
       [106, 'tcp', 'allow', '54.243.211.74/32', null, null, 80, 80],
       [107, 'tcp', 'allow', '54.243.211.74/32', null, null, 443, 443],
+      [108, 'tcp', 'allow', '104.96.220.152/32', null, null, 80, 80],
+      [109, 'tcp', 'allow', '104.96.220.162/32', null, null, 80, 80],
+      [110, 'tcp', 'allow', '104.112.43.81/32', null, null, 443, 443],
     ]
     state: 'present'
 
@@ -38,6 +44,9 @@
       [103, 'tcp', 'allow', '107.21.249.70/32', null, null, 1024, 65535],
       [104, 'tcp', 'allow', '107.22.208.105/32', null, null, 1024, 65535],
       [105, 'tcp', 'allow', '54.243.211.74/32', null, null, 1024, 65535],
+      [106, 'tcp', 'allow', '104.96.220.152/32', null, null, 1024, 65535],
+      [107, 'tcp', 'allow', '104.96.220.162/32', null, null, 1024, 65535],
+      [108, 'tcp', 'allow', '104.112.43.81/32', null, null, 1024, 65535],
     ]
     egress: [
       [100, 'tcp', 'allow', '10.20.0.0/28', null, null, 1024, 65535],
@@ -49,6 +58,9 @@
       [106, 'tcp', 'allow', '107.22.208.105/32', null, null, 443, 443],
       [107, 'tcp', 'allow', '54.243.211.74/32', null, null, 80, 80],
       [108, 'tcp', 'allow', '54.243.211.74/32', null, null, 443, 443],
+      [109, 'tcp', 'allow', '104.96.220.152/32', null, null, 80, 80],
+      [110, 'tcp', 'allow', '104.96.220.162/32', null, null, 80, 80],
+      [111, 'tcp', 'allow', '104.112.43.81/32', null, null, 443, 443],
     ]
     state: 'present'
 
@@ -65,6 +77,9 @@
       [103, 'tcp', 'allow', '107.21.249.70/32', null, null, 1024, 65535],
       [104, 'tcp', 'allow', '107.22.208.105/32', null, null, 1024, 65535],
       [105, 'tcp', 'allow', '54.243.211.74/32', null, null, 1024, 65535],
+      [106, 'tcp', 'allow', '104.96.220.152/32', null, null, 1024, 65535],
+      [107, 'tcp', 'allow', '104.96.220.162/32', null, null, 1024, 65535],
+      [108, 'tcp', 'allow', '104.112.43.81/32', null, null, 1024, 65535],
     ]
     egress: [
       [100, 'tcp', 'allow', '10.20.1.0/28', null, null, 9200, 9200],
@@ -75,5 +90,8 @@
       [105, 'tcp', 'allow', '107.22.208.105/32', null, null, 443, 443],
       [106, 'tcp', 'allow', '54.243.211.74/32', null, null, 80, 80],
       [107, 'tcp', 'allow', '54.243.211.74/32', null, null, 443, 443],
+      [108, 'tcp', 'allow', '104.96.220.152/32', null, null, 80, 80],
+      [109, 'tcp', 'allow', '104.96.220.162/32', null, null, 80, 80],
+      [110, 'tcp', 'allow', '104.112.43.81/32', null, null, 443, 443],
     ]
     state: 'present'
