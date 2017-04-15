@@ -10,4 +10,5 @@
     - include: deploy_aws/create_igw.yml
     - include: deploy_aws/create_routes.yml
     - include: deploy_aws/deploy_ec2.yml
+    - include: deploy_aws/create_acls.yml
     - include: deploy_aws/gather_ips.yml

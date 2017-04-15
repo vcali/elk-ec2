@@ -1,0 +1,32 @@
+# Allowing instances to access Amazon and ELK repositories
+- name: Creating Network ACLs
+  ec2_vpc_nacl:
+    vpc_id: "{{ my_vpc_id  }}"
+    name: logstash_acl
+    subnets: "{{ subnet_logstash_id }}"
+    ingress: [
+      # rule no, protocol, allow/deny, cidr, icmp_code, icmp_type, port from, port to
+      [100, 'tcp', 'allow', '187.101.86.246/32', null, null, 22, 22],
+      [101, 'tcp', 'allow', '187.101.86.246/32', null, null, 5044, 5044],
+      [102, 'tcp', 'allow', '10.20.1.0/28', null, null, 1024, 65535],
+      [103, 'tcp', 'allow', '107.21.249.70/32', null, null, 1024, 65535],
+      [104, 'tcp', 'allow', '107.22.208.105/32', null, null, 1024, 65535],
+      [105, 'tcp', 'allow', '54.243.211.74/32', null, null, 1024, 65535],
+      [106, 'tcp', 'allow', '52.216.2.0/32', null, null, 1024, 65535],
+      [107, 'tcp', 'allow', '52.216.81.0/32', null, null, 1024, 65535],
+    ]
+    egress: [
+      [100, 'tcp', 'allow', '10.20.1.0/28', null, null, 9200, 9200],
+      [101, 'tcp', 'allow', '187.101.86.246/32', null, null, 1024, 65535],
+      [102, 'tcp', 'allow', '107.21.249.70/32', null, null, 80, 80],
+      [103, 'tcp', 'allow', '107.21.249.70/32', null, null, 443, 443],
+      [104, 'tcp', 'allow', '107.22.208.105/32', null, null, 80, 80],
+      [105, 'tcp', 'allow', '107.22.208.105/32', null, null, 443, 443],
+      [106, 'tcp', 'allow', '54.243.211.74/32', null, null, 80, 80],
+      [107, 'tcp', 'allow', '54.243.211.74/32', null, null, 443, 443],
+      [108, 'tcp', 'allow', '52.216.2.0/32', null, null, 80, 80],
+      [109, 'tcp', 'allow', '52.216.2.0/32', null, null, 443, 443],
+      [110, 'tcp', 'allow', '52.216.81.0/32', null, null, 80, 80],
+      [111, 'tcp', 'allow', '52.216.81.0/32', null, null, 443, 443],
+    ]
+    state: 'present'
