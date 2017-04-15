@@ -17,6 +17,14 @@
         from_port: 9200
         to_port: 9200
         cidr_ip: 10.20.1.0/28
+      - proto: tcp
+        from_port: 80
+        to_port: 80
+        cidr_ip: 0.0.0.0/0
+      - proto: tcp
+        from_port: 443 
+        to_port: 443
+        cidr_ip: 0.0.0.0/0
 
 - name: Creating security group for ElasticSearch
   ec2_group:
@@ -32,13 +40,14 @@
         from_port: 22
         to_port: 22
         cidr_ip: 187.101.86.246/32
-    # ElasticSearch wasnt supposed to access any app, but I just found a bug where, despite of what the doc says, the group is created with access to everything if no rules_egress is applied. So, Im allowing it to access Kibana's interface (it should be blocked on the kibana_group incoming rules)
-    # doc here: http://docs.ansible.com/ansible/ec2_group_module.html
-    rules_egress:
       - proto: tcp
         from_port: 80
         to_port: 80
-        cidr_ip: 10.20.2.0/28 
+        cidr_ip: 0.0.0.0/0
+      - proto: tcp
+        from_port: 443 
+        to_port: 443
+        cidr_ip: 0.0.0.0/0
 
 - name: Creating security group for Kibana 
   ec2_group:
@@ -59,4 +68,11 @@
         from_port: 9200
         to_port: 9200
         cidr_ip: 10.20.1.0/28
-
+      - proto: tcp
+        from_port: 80
+        to_port: 80
+        cidr_ip: 0.0.0.0/0
+      - proto: tcp
+        from_port: 443 
+        to_port: 443
+        cidr_ip: 0.0.0.0/0
