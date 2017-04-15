@@ -1,0 +1,5 @@
+- name: Creating intenet gateway
+  ec2_vpc_igw:
+    vpc_id: "{{ my_vpc_id }}"
+    state: present
+  register: igw
