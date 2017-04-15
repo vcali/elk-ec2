@@ -5,4 +5,3 @@
     region: us-east-1
     tags:
       purpose: fender_job
-    tenancy: dedicated
