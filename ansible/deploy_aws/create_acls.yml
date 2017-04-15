@@ -1,5 +1,5 @@
 # Allowing instances to access ELK repository
-- name: Creating Network ACLs
+- name: Creating Network ACLs for Logstash
   ec2_vpc_nacl:
     vpc_id: "{{ my_vpc_id  }}"
     name: logstash_acl
@@ -8,6 +8,59 @@
       # rule no, protocol, allow/deny, cidr, icmp_code, icmp_type, port from, port to
       [100, 'tcp', 'allow', '187.101.86.246/32', null, null, 22, 22],
       [101, 'tcp', 'allow', '187.101.86.246/32', null, null, 5044, 5044],
+      [102, 'tcp', 'allow', '10.20.1.0/28', null, null, 1024, 65535],
+      [103, 'tcp', 'allow', '107.21.249.70/32', null, null, 1024, 65535],
+      [104, 'tcp', 'allow', '107.22.208.105/32', null, null, 1024, 65535],
+      [105, 'tcp', 'allow', '54.243.211.74/32', null, null, 1024, 65535],
+    ]
+    egress: [
+      [100, 'tcp', 'allow', '10.20.1.0/28', null, null, 9200, 9200],
+      [101, 'tcp', 'allow', '187.101.86.246/32', null, null, 1024, 65535],
+      [102, 'tcp', 'allow', '107.21.249.70/32', null, null, 80, 80],
+      [103, 'tcp', 'allow', '107.21.249.70/32', null, null, 443, 443],
+      [104, 'tcp', 'allow', '107.22.208.105/32', null, null, 80, 80],
+      [105, 'tcp', 'allow', '107.22.208.105/32', null, null, 443, 443],
+      [106, 'tcp', 'allow', '54.243.211.74/32', null, null, 80, 80],
+      [107, 'tcp', 'allow', '54.243.211.74/32', null, null, 443, 443],
+    ]
+    state: 'present'
+
+- name: Creating Network ACLs for ElasticSearch 
+  ec2_vpc_nacl:
+    vpc_id: "{{ my_vpc_id  }}"
+    name: elasticsearch_acl
+    subnets: "{{ subnet_elasticsearch_id }}"
+    ingress: [
+      # rule no, protocol, allow/deny, cidr, icmp_code, icmp_type, port from, port to
+      [100, 'tcp', 'allow', '187.101.86.246/32', null, null, 22, 22],
+      [101, 'tcp', 'allow', '10.20.0.0/28', null, null, 9200, 9200],
+      [102, 'tcp', 'allow', '10.20.2.0/28', null, null, 9200, 9200],
+      [103, 'tcp', 'allow', '107.21.249.70/32', null, null, 1024, 65535],
+      [104, 'tcp', 'allow', '107.22.208.105/32', null, null, 1024, 65535],
+      [105, 'tcp', 'allow', '54.243.211.74/32', null, null, 1024, 65535],
+    ]
+    egress: [
+      [100, 'tcp', 'allow', '10.20.0.0/28', null, null, 1024, 65535],
+      [101, 'tcp', 'allow', '10.20.2.0/28', null, null, 1024, 65535],
+      [102, 'tcp', 'allow', '187.101.86.246/32', null, null, 1024, 65535],
+      [103, 'tcp', 'allow', '107.21.249.70/32', null, null, 80, 80],
+      [104, 'tcp', 'allow', '107.21.249.70/32', null, null, 443, 443],
+      [105, 'tcp', 'allow', '107.22.208.105/32', null, null, 80, 80],
+      [106, 'tcp', 'allow', '107.22.208.105/32', null, null, 443, 443],
+      [107, 'tcp', 'allow', '54.243.211.74/32', null, null, 80, 80],
+      [108, 'tcp', 'allow', '54.243.211.74/32', null, null, 443, 443],
+    ]
+    state: 'present'
+
+- name: Creating Network ACLs for Kibana 
+  ec2_vpc_nacl:
+    vpc_id: "{{ my_vpc_id  }}"
+    name: kibana_acl
+    subnets: "{{ subnet_kibana_id }}"
+    ingress: [
+      # rule no, protocol, allow/deny, cidr, icmp_code, icmp_type, port from, port to
+      [100, 'tcp', 'allow', '187.101.86.246/32', null, null, 22, 22],
+      [101, 'tcp', 'allow', '187.101.86.246/32', null, null, 80, 80],
       [102, 'tcp', 'allow', '10.20.1.0/28', null, null, 1024, 65535],
       [103, 'tcp', 'allow', '107.21.249.70/32', null, null, 1024, 65535],
       [104, 'tcp', 'allow', '107.22.208.105/32', null, null, 1024, 65535],
