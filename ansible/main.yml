@@ -6,4 +6,5 @@
   
     - include: create_vpc.yml
     - include: create_subnets.yml
+    - include: create_groups.yml
     - include: deploy_ec2.yml

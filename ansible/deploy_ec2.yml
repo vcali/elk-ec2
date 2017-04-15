@@ -14,7 +14,7 @@
     instance_type: t2.micro
     image: ami-22ce4934 ## Amazon Linux
     wait: yes
-    group: logstash
+    group: logstash_group
     count: 1
     vpc_subnet_id: "{{ subnet_logstash_id }}"
     assign_public_ip: yes
