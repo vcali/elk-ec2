@@ -1,0 +1,34 @@
+- name: Gathering IP of Logstash instance
+  ec2_remote_facts:
+    filters:
+      "tag:Name": Logstash
+  register: logstash_ec2_facts
+
+- name: Recording IP of Logstash instance
+  set_fact:
+    logstash_public_ip: "{{ logstash_ec2_facts.instances.0.public_ip_address }}"
+
+- name: Gathering IP of ElasticSearch instance
+  ec2_remote_facts:
+    filters:
+      "tag:Name": ElasticSearch
+  register: elasticsearch_ec2_facts
+
+- name: Recording IP of ElasticSearch instance
+  set_fact:
+    elasticsearch_public_ip: "{{ elasticsearch_ec2_facts.instances.0.public_ip_address }}"
+
+- name: Gathering IP of Kibana instance
+  ec2_remote_facts:
+    filters:
+      "tag:Name": Kibana
+  register: kibana_ec2_facts
+
+- name: Recording IP of Kibana instance
+  set_fact:
+    kibana_public_ip: "{{ kibana_ec2_facts.instances.0.public_ip_address }}"
+
+- template:
+    src: ec2_hosts.yml.jinja2
+    dest: "/ansible/ec2_hosts"
+

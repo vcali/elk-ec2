@@ -4,10 +4,10 @@
 
   tasks:
   
-    - include: create_vpc.yml
-    - include: create_subnets.yml
-    - include: create_groups.yml
-    - include: create_igw.yml
-    - include: create_routes.yml
-    - include: deploy_ec2.yml
-    - include: gather_ips.yml
+    - include: deploy_aws/create_vpc.yml
+    - include: deploy_aws/create_subnets.yml
+    - include: deploy_aws/create_groups.yml
+    - include: deploy_aws/create_igw.yml
+    - include: deploy_aws/create_routes.yml
+    - include: deploy_aws/deploy_ec2.yml
+    - include: deploy_aws/gather_ips.yml
