@@ -49,7 +49,7 @@
         Name: ElasticSearch
     group: elasticsearch_group
     vpc_subnet_id: "{{ subnet_elasticsearch_id }}"
-    assign_public_ip: no
+    assign_public_ip: yes 
 
 # Deploying Kibana Instance
 - name: Gathering subnet ID for Kibana subnet

@@ -8,4 +8,5 @@
     - include: create_subnets.yml
     - include: create_groups.yml
     - include: create_igw.yml
+    - include: create_routes.yml
     - include: deploy_ec2.yml

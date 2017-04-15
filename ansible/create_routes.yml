@@ -1,0 +1,12 @@
+- name: Creating routes
+  ec2_vpc_route_table:
+    vpc_id: "{{ my_vpc_id }}"
+    tags:
+      Name: External Route
+    subnets:
+      - '10.20.0.0/28'
+      - '10.20.1.0/28'
+      - '10.20.2.0/28'
+    routes:
+      - dest: 0.0.0.0/0
+        gateway_id: "{{ igw.gateway_id}}" 
