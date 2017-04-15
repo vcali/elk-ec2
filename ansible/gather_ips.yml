@@ -1,0 +1,14 @@
+- name: Gathering IP of Logstash instance
+  ec2_remote_facts:
+    filters:
+      "tag:Name": Logstash
+  register: logstash_ec2_facts
+
+- name: Recording IP of Logstash instance
+  set_fact:
+    logstash_public_ip: "{{ logstash_ec2_facts.instances.0.public_ip_address }}"
+
+- template:
+    src: ec2_hosts.yml.jinja2
+    dest: "/ansible/ec2_hosts"
+

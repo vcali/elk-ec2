@@ -10,3 +10,4 @@
     - include: create_igw.yml
     - include: create_routes.yml
     - include: deploy_ec2.yml
+    - include: gather_ips.yml
