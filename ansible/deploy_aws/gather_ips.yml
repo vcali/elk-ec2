@@ -2,6 +2,7 @@
   ec2_remote_facts:
     filters:
       "tag:Name": Logstash
+      instance-state-name: running
   register: logstash_ec2_facts
 
 - name: Recording IP of Logstash instance
@@ -12,6 +13,7 @@
   ec2_remote_facts:
     filters:
       "tag:Name": ElasticSearch
+      instance-state-name: running
   register: elasticsearch_ec2_facts
 
 - name: Recording IP of ElasticSearch instance
@@ -22,6 +24,7 @@
   ec2_remote_facts:
     filters:
       "tag:Name": Kibana
+      instance-state-name: running
   register: kibana_ec2_facts
 
 - name: Recording IP of Kibana instance
