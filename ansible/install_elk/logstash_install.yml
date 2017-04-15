@@ -1,0 +1,4 @@
+- name: Adding key to rpm_db
+  rpm_key:
+    state: present
+    key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
