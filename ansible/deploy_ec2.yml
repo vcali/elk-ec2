@@ -1,11 +1,20 @@
+- name: Gathering subnet ID for Logstash Subnet
+  ec2_vpc_subnet_facts:
+    filters:
+      "tag:Name": Logstash Subnet
+  register: subnet_logstash_facts
 
-#    - name: Creating Logstash Instance
-#      ec2:
-#        key_name: key-vcali-nvirg
-#        instance_type: t2.micro
-#        image: ami-22ce4934 ## Amazon Linux
-#        wait: yes
-#        group: logstash
-#        count: 1
-#        vpc_subnet_id: subnet-29e63245
-#        assign_public_ip: yes
+- name: Recording ID for Logstash Subnet
+  set_fact:
+    subnet_logstash_id: "{{ subnet_logstash_facts.subnets.0.id }}"
+
+- name: Creating Logstash Instance
+  ec2:
+    key_name: key-vcali-nvirg
+    instance_type: t2.micro
+    image: ami-22ce4934 ## Amazon Linux
+    wait: yes
+    group: logstash
+    count: 1
+    vpc_subnet_id: "{{ subnet_logstash_id }}"
+    assign_public_ip: yes
