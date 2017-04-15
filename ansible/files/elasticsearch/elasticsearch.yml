@@ -1,4 +1,4 @@
-======================== Elasticsearch Configuration =========================
+#======================== Elasticsearch Configuration =========================
 #
 # NOTE: Elasticsearch comes with reasonable defaults for most settings.
 #       Before you set out to tweak and tune the configuration, make sure you

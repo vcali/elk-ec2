@@ -1,6 +1,5 @@
-#- name: Copying configuration files to Logstash
-#- copy: src=/ansible/files/logstash/conf.d/ dest=/etc/logstash/conf.d/
-#- copy: src=/ansible/files/logstash/certs/ dest=/etc/logstash/certs/
+- name: Copying configuration files to Logstash
+  copy: src=/ansible/files/elasticsearch/ dest=/etc/elasticsearch/
 
 - name: Downloading Java 8
   get_url:
