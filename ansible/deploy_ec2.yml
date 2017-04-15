@@ -1,3 +1,4 @@
+# Deploying Logstash Instance
 - name: Gathering subnet ID for Logstash Subnet
   ec2_vpc_subnet_facts:
     filters:
@@ -15,6 +16,63 @@
     image: ami-22ce4934 ## Amazon Linux
     wait: yes
     group: logstash_group
-    count: 1
+    instance_tags:
+        Name: Logstash
+    exact_count: 1
+    count_tag:
+        Name: Logstash
     vpc_subnet_id: "{{ subnet_logstash_id }}"
     assign_public_ip: yes
+
+
+# Deploying ElasticSearch Instance
+- name: Gathering subnet ID for ElasticSearch subnet
+  ec2_vpc_subnet_facts:
+    filters:
+      "tag:Name": ElasticSearch Subnet
+  register: subnet_elasticsearch_facts
+
+- name: Recording ID for ElasticSearch Subnet
+  set_fact:
+    subnet_elasticsearch_id: "{{ subnet_elasticsearch_facts.subnets.0.id }}"
+
+- name: Creating ElasticSearch Instance
+  ec2:
+    key_name: key-vcali-nvirg
+    instance_type: t2.micro
+    image: ami-22ce4934 ## Amazon Linux
+    wait: yes
+    instance_tags:
+        Name: ElasticSearch
+    exact_count: 1
+    count_tag:
+        Name: ElasticSearch
+    group: elasticsearch_group
+    vpc_subnet_id: "{{ subnet_elasticsearch_id }}"
+    assign_public_ip: no
+
+# Deploying Kibana Instance
+- name: Gathering subnet ID for Kibana subnet
+  ec2_vpc_subnet_facts:
+    filters:
+      "tag:Name": Kibana Subnet
+  register: subnet_kibana_facts
+
+- name: Recording ID for Kibana Subnet
+  set_fact:
+    subnet_kibana_id: "{{ subnet_kibana_facts.subnets.0.id }}"
+
+- name: Creating Kibana Instance
+  ec2:
+    key_name: key-vcali-nvirg
+    instance_type: t2.micro
+    image: ami-22ce4934 ## Amazon Linux
+    wait: yes
+    group: kibana_group
+    instance_tags:
+        Name: Kibana
+    exact_count: 1
+    count_tag:
+        Name: Kibana
+    vpc_subnet_id: "{{ subnet_kibana_id }}"
+    assign_public_ip: yes 
