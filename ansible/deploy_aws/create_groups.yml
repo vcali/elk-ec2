@@ -7,11 +7,11 @@
       - proto: tcp
         from_port: 5044
         to_port: 5044
-        cidr_ip: 187.101.86.246/32
+        cidr_ip: "{{ my_ip }}/32"
       - proto: tcp
         from_port: 22
         to_port: 22
-        cidr_ip: 187.101.86.246/32
+        cidr_ip: "{{ my_ip }}/32"
     rules_egress:
       - proto: tcp
         from_port: 9200
@@ -39,7 +39,7 @@
       - proto: tcp
         from_port: 22
         to_port: 22
-        cidr_ip: 187.101.86.246/32
+        cidr_ip: "{{ my_ip }}/32"
       - proto: tcp
         from_port: 80
         to_port: 80
@@ -58,11 +58,11 @@
       - proto: tcp
         from_port: 80 
         to_port: 80
-        cidr_ip: 187.101.86.246/32
+        cidr_ip: "{{ my_ip }}/32"
       - proto: tcp
         from_port: 22
         to_port: 22
-        cidr_ip: 187.101.86.246/32
+        cidr_ip: "{{ my_ip }}/32"
     rules_egress:
       - proto: tcp
         from_port: 9200

@@ -6,8 +6,8 @@
     subnets: "{{ subnet_logstash_id }}"
     ingress: [
       # rule no, protocol, allow/deny, cidr, icmp_code, icmp_type, port from, port to
-      [100, 'tcp', 'allow', '187.101.86.246/32', null, null, 22, 22],
-      [101, 'tcp', 'allow', '187.101.86.246/32', null, null, 5044, 5044],
+      [100, 'tcp', 'allow', '{{ my_ip }}/32', null, null, 22, 22],
+      [101, 'tcp', 'allow', '{{ my_ip }}/32', null, null, 5044, 5044],
       [102, 'tcp', 'allow', '10.20.1.0/28', null, null, 1024, 65535],
       [103, 'tcp', 'allow', '107.21.249.70/32', null, null, 1024, 65535],
       [104, 'tcp', 'allow', '107.22.208.105/32', null, null, 1024, 65535],
@@ -21,7 +21,7 @@
     ]
     egress: [
       [100, 'tcp', 'allow', '10.20.1.0/28', null, null, 9200, 9200],
-      [101, 'tcp', 'allow', '187.101.86.246/32', null, null, 1024, 65535],
+      [101, 'tcp', 'allow', '{{ my_ip }}/32', null, null, 1024, 65535],
       [102, 'tcp', 'allow', '107.21.249.70/32', null, null, 80, 80],
       [103, 'tcp', 'allow', '107.21.249.70/32', null, null, 443, 443],
       [104, 'tcp', 'allow', '107.22.208.105/32', null, null, 80, 80],
@@ -44,7 +44,7 @@
     subnets: "{{ subnet_elasticsearch_id }}"
     ingress: [
       # rule no, protocol, allow/deny, cidr, icmp_code, icmp_type, port from, port to
-      [100, 'tcp', 'allow', '187.101.86.246/32', null, null, 22, 22],
+      [100, 'tcp', 'allow', '{{ my_ip }}/32', null, null, 22, 22],
       [101, 'tcp', 'allow', '10.20.0.0/28', null, null, 9200, 9200],
       [102, 'tcp', 'allow', '10.20.2.0/28', null, null, 9200, 9200],
       [103, 'tcp', 'allow', '107.21.249.70/32', null, null, 1024, 65535],
@@ -60,7 +60,7 @@
     egress: [
       [100, 'tcp', 'allow', '10.20.0.0/28', null, null, 1024, 65535],
       [101, 'tcp', 'allow', '10.20.2.0/28', null, null, 1024, 65535],
-      [102, 'tcp', 'allow', '187.101.86.246/32', null, null, 1024, 65535],
+      [102, 'tcp', 'allow', '{{ my_ip }}/32', null, null, 1024, 65535],
       [103, 'tcp', 'allow', '107.21.249.70/32', null, null, 80, 80],
       [104, 'tcp', 'allow', '107.21.249.70/32', null, null, 443, 443],
       [105, 'tcp', 'allow', '107.22.208.105/32', null, null, 80, 80],
@@ -83,8 +83,8 @@
     subnets: "{{ subnet_kibana_id }}"
     ingress: [
       # rule no, protocol, allow/deny, cidr, icmp_code, icmp_type, port from, port to
-      [100, 'tcp', 'allow', '187.101.86.246/32', null, null, 22, 22],
-      [101, 'tcp', 'allow', '187.101.86.246/32', null, null, 80, 80],
+      [100, 'tcp', 'allow', '{{ my_ip }}/32', null, null, 22, 22],
+      [101, 'tcp', 'allow', '{{ my_ip }}/32', null, null, 80, 80],
       [102, 'tcp', 'allow', '10.20.1.0/28', null, null, 1024, 65535],
       [103, 'tcp', 'allow', '107.21.249.70/32', null, null, 1024, 65535],
       [104, 'tcp', 'allow', '107.22.208.105/32', null, null, 1024, 65535],
@@ -100,7 +100,7 @@
     ]
     egress: [
       [100, 'tcp', 'allow', '10.20.1.0/28', null, null, 9200, 9200],
-      [101, 'tcp', 'allow', '187.101.86.246/32', null, null, 1024, 65535],
+      [101, 'tcp', 'allow', '{{ my_ip }}/32', null, null, 1024, 65535],
       [102, 'tcp', 'allow', '107.21.249.70/32', null, null, 80, 80],
       [103, 'tcp', 'allow', '107.21.249.70/32', null, null, 443, 443],
       [104, 'tcp', 'allow', '107.22.208.105/32', null, null, 80, 80],

@@ -3,6 +3,7 @@
   gather_facts: False
   vars:
    key_name: "{{ lookup('file', 'key_name') }}" 
+   my_ip: "{{ lookup('file', 'my_ip') }}"
 
   tasks:
   
