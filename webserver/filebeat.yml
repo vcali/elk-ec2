@@ -1,4 +1,11 @@
 # Enabling ssl and configuring Filebeat to send the logs to Logstash
+logging.level: info
+logging.to_files: true
+logging.to_syslog: false
+logging.files:
+  path: /var/log/
+  name: filebeat.log
+
 filebeat.prospectors:
 
 - input_type: log

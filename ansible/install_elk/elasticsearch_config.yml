@@ -15,6 +15,10 @@
     state: present
   environment:
     JAVA_HOME: /usr/java/latest
+  register: result
+  until: result |success
+  retries: 5
+  delay: 5
 
 - name: Starting ElasticSearch
   service:

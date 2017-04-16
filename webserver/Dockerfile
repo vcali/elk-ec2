@@ -5,9 +5,10 @@
 # Unfortunately Alpine repositories doesnt include glibc, so I am using this image, which is very 
 # used on the wild and can be trusted
 FROM frolvlad/alpine-glibc
+COPY start.sh /tmp/
 COPY filebeat.yml /tmp/
-COPY logstash-beats.crt /tmp/
 COPY webserver.rb /tmp/
+COPY logstash-beats.crt /tmp/
 
 RUN apk --no-cache add curl ruby && \ 
     curl https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-5.3.0-linux-x86_64.tar.gz -o /tmp/filebeat.tar.gz && \
@@ -22,5 +23,6 @@ RUN apk --no-cache add curl ruby && \
     rm -rf /tmp/*beat* && \
     gem install --no-ri sinatra && \
     mv /tmp/webserver.rb /bin && \
-    chmod a+x /bin/webserver.rb
-
+    chmod a+x /bin/webserver.rb && \
+    mv /tmp/start.sh /bin && \
+    chmod a+x /bin/start.sh

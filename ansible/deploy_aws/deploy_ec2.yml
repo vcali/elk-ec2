@@ -11,7 +11,7 @@
 
 - name: Creating Logstash Instance
   ec2:
-    key_name: key-vcali-nvirg
+    key_name: "{{ key_name }}"
     instance_type: t2.micro
     image: ami-22ce4934 # Amazon Linux
     wait: yes
@@ -38,7 +38,7 @@
 
 - name: Creating ElasticSearch Instance
   ec2:
-    key_name: key-vcali-nvirg
+    key_name: "{{ key_name }}"
     instance_type: t2.micro
     image: ami-22ce4934 # Amazon Linux
     wait: yes
@@ -64,7 +64,7 @@
 
 - name: Creating Kibana Instance
   ec2:
-    key_name: key-vcali-nvirg
+    key_name: "{{ key_name }}"
     instance_type: t2.micro
     image: ami-22ce4934 # Amazon Linux
     wait: yes

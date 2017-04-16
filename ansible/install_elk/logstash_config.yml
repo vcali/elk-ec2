@@ -16,6 +16,10 @@
     headers: 'Cookie:oraclelicense=accept-securebackup-cookie'
     dest: /home/ec2-user/jdk-8u121-linux-x64.rpm
     validate_certs: False
+  register: result
+  until: result |success
+  retries: 5
+  delay: 5
 
 
 - name: Installing Java 8
