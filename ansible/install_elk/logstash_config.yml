@@ -1,7 +1,8 @@
 - name: Copying configuration files to Logstash
   copy: src=/ansible/files/logstash/conf.d/ dest=/etc/logstash/conf.d/
-  with_items:
-    - { src=/ansible/files/logstash/certs/ dest=/etc/logstash/certs/ }
+
+- name: Copying cert files to Logstash
+  copy: src=/ansible/files/logstash/certs/ dest=/etc/logstash/certs/
 
 - name: Filling template with ElasticSearch instance IP
   template:
