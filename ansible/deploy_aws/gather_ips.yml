@@ -24,10 +24,10 @@
   set_fact:
     elasticsearch_private_ip: "{{ elasticsearch_ec2_facts.instances.0.private_ip_address }}"
 
-- copy:
+- name: Writing IP to file
+  copy:
     content: "{{ elasticsearch_private_ip }}"
     dest: /ansible/elasticsearch_private_ip
-
 
 - name: Gathering public IP of Kibana instance
   ec2_remote_facts:
@@ -40,6 +40,7 @@
   set_fact:
     kibana_public_ip: "{{ kibana_ec2_facts.instances.0.public_ip_address }}"
 
-- template:
+- name: Filling template with instance's IPs
+  template:
     src: ec2_hosts.yml.jinja2
     dest: "/ansible/ec2_hosts"
