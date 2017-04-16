@@ -6,11 +6,24 @@
 
 # For it to work, you need to insert your AWS keys on the ansible/Dockerfile file
 
-DOCKER=`which docker`
-
 MY_IP=$1
 KEY_NAME=$2
 KEY_PATH=$3
+DOCKER=`which docker`
+
+usage() {
+  echo ""
+  echo "This script needs your public IP, the name of the key pair that will be used to deploy instances, and the absolute path to your AWS ssh key"
+  echo "Example:"
+  echo "$0 187.101.86.246 generic-key-pair /home/user/ssh-key.pem" 
+  echo ""
+}
+
+if [ ! "$#" -eq 3 ] ; then
+  usage
+  exit 1
+fi
+
 
 if [ ! -f $KEY_PATH ] ; then
   echo "SSH key not found in given path"
