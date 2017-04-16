@@ -13,9 +13,10 @@ DOCKER=`which docker`
 
 usage() {
   echo ""
-  echo "This script needs your public IP, the name of the key pair that will be used to deploy instances, and the absolute path to your AWS ssh key"
+  echo "This script needs to be run with sudo because of docker"
+  echo "It also needs your public IP, the name of the key pair that will be used to deploy instances, and the absolute path to your AWS ssh key"
   echo "Example:"
-  echo "$0 187.101.86.246 generic-key-pair /home/user/ssh-key.pem" 
+  echo "sudo $0 187.101.86.246 generic-key-pair /home/user/ssh-key.pem" 
   echo ""
 }
 
