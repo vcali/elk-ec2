@@ -11,6 +11,9 @@ A few observations before we start:
   * The project was made assuming that an IAM user has already been created
   * To guarantee that it will work anywhere, I used Docker, so it is a requirement
   * The user needs to insert his own AWS credentials on ./ansible/Dockerfile
+  * I made a video showing the deploy: https://www.dropbox.com/sh/w7catzpk5antxka/AACye7640mGp2edl4uQpkXPEa?dl=0
+
+I suggest the user to download it instead of opening it directly on Dropbox - the stream may decrease the video quality
 
 How It Works
 ============
@@ -24,9 +27,9 @@ The usage is very simple. It needs 3 parameters:
 sudo ./run-me.sh <your-public-ip> <aws-key-pair-name> <path-to-aws-ssh-key>
 ```
 
-  * <your-public-ip>            - needed to create the rules that allows the user to access instances
-  * <aws-key-pair-name>         - the name of the key pair that will be used on the instances
-  * <path-to-aws-ssh-key>       - the path to the user ssh key
+  * <your-public-ip>            needed to create the rules that allows the user to access instances
+  * <aws-key-pair-name>         the name of the key pair that will be used on the instances
+  * <path-to-aws-ssh-key>       the path to the user ssh key
 
 Example:
 
@@ -58,7 +61,7 @@ The communication between Filebeat and Logstash is protected by SSL. As this is 
 What I Used
 ===========
 
-  * Ansible and its Cloud Modules (doc here: http://docs.ansible.com/ansible/list\_of\_cloud_modules.html)
+  * Ansible and its Cloud Modules (doc here: http://docs.ansible.com/ansible/list_of_cloud_modules.html)
   * Docker
   * Ruby's Sinatra, to deploy the webserver
   * Alpine Linux, to keep images as small as possible (glibc image downloaded from here: https://hub.docker.com/r/frolvlad/alpine-glibc/)
