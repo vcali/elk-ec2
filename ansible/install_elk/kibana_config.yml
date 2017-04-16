@@ -1,0 +1,51 @@
+#- name: Copying configuration files to Logstash
+#  copy: src=/ansible/files/elasticsearch/ dest=/etc/elasticsearch/
+
+- name: Downloading Java 8
+  get_url:
+    url: http://download.oracle.com/otn-pub/java/jdk/8u121-b13/e9e7ea248e2c4826b92b3f075a80e441/jdk-8u121-linux-x64.rpm
+    headers: 'Cookie:oraclelicense=accept-securebackup-cookie'
+    dest: /home/ec2-user/jdk-8u121-linux-x64.rpm
+    validate_certs: False
+
+- name: Installing Java 8
+  yum:
+    name: /home/ec2-user/jdk-8u121-linux-x64.rpm
+    state: present
+  environment:
+    JAVA_HOME: /usr/java/latest
+
+- name: Downloading Nginx
+  get_url:
+    url: https://nginx.org/packages/rhel/6/x86_64/RPMS/nginx-1.12.0-1.el6.ngx.x86_64.rpm
+    dest: /home/ec2-user/nginx-1.12.0-1.el6.ngx.x86_64.rpm
+
+- name: Installing Ngnix
+  yum:
+    name: /home/ec2-user/nginx-1.12.0-1.el6.ngx.x86_64.rpm
+    state: present
+
+- name: Filling Kibana config template with ElasticSearch instance IP
+  template:
+    src: /ansible/files/kibana/kibana.yml.jinja2
+    dest: /etc/kibana/kibana.yml
+
+- name: Copying configuration files to Nginx 
+  copy: src=/ansible/files/nginx/ dest=/etc/nginx/conf.d/
+
+- name: Removing Nginx's default.conf
+  file:
+    path: /etc/nginx/conf.d/default.conf
+    state: absent
+
+- name: Starting Kibana
+  service:
+    name: kibana
+    state: started
+    enabled: yes
+
+- name: Starting Nginx 
+  service:
+    name: nginx
+    state: started
+    enabled: yes

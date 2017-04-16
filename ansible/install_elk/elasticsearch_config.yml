@@ -1,4 +1,4 @@
-- name: Copying configuration files to Logstash
+- name: Copying configuration files to ElasticSearch 
   copy: src=/ansible/files/elasticsearch/ dest=/etc/elasticsearch/
 
 - name: Downloading Java 8
@@ -16,7 +16,7 @@
   environment:
     JAVA_HOME: /usr/java/latest
 
-- name: Starting  ElasticSearch
+- name: Starting ElasticSearch
   service:
     name: elasticsearch
     state: started
