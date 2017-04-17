@@ -50,9 +50,6 @@ First of all, a docker image will be created. This image will deploy all the inf
   * A lot of network ACLs, ensuring access only to the user, Oracle (to download latest Java), ELK repository and between instances
   * 3 instances - one for each app
 
-After the deploy of the infrastructure, the image will log in all 3 instances and install their designed app.
-If AWS takes too long to start the instances (which happened during the development), Ansible is set to retry login up to 10 times. The same behavior is set to happen if the download of Java or Nginx fail (also happened during the development). Nginx is not a part of ELK Stack, however I decided to run it on top of Kibana.
-
 When the ELK Stack deploy finishes, a second image will be built.
 That second image will start a simple webserver and the Filebeat app.
 During the process, Logstash's IP will be retrieved and injected into Filebeat's configuration.
@@ -66,10 +63,12 @@ What I Used
   * Ruby's Sinatra, to deploy the webserver
   * Instances run on Amazon Linux
   * Alpine Linux, to keep docker images as small as possible (glibc image downloaded from here: https://hub.docker.com/r/frolvlad/alpine-glibc/)
+  * Nginx on top of Kibana
 
 Final Thoughts
 ==============
 
+Oracle seems to like to change its IPs every day. For that, there may be some problems during the Java download. I tried to allow instances to access all Oracle's IPs I found during the development, but the very next day some IPs changed, so an timeout error may happen :(
 For this project to run correctly, Ansible version must be the latest available (right now its the version 2.2.1.0-r0
 ). The latest version is always available on Pip repositories, which is what I used to download Ansible (doc here: http://docs.ansible.com/ansible/intro_installation.html#latest-releases-via-pip).
 A lot of the modules I used are available only on the more recent versions.
