@@ -64,11 +64,15 @@ What I Used
   * Ansible and its Cloud Modules (doc here: http://docs.ansible.com/ansible/list_of_cloud_modules.html)
   * Docker
   * Ruby's Sinatra, to deploy the webserver
-  * Alpine Linux, to keep images as small as possible (glibc image downloaded from here: https://hub.docker.com/r/frolvlad/alpine-glibc/)
+  * Instances run on Amazon Linux
+  * Alpine Linux, to keep docker images as small as possible (glibc image downloaded from here: https://hub.docker.com/r/frolvlad/alpine-glibc/)
 
 Final Thoughts
 ==============
 
+For this project to run correctly, Ansible version must be the latest available (right now its the version 2.2.1.0-r0
+). The latest version is always available on Pip repositories, which is what I used to download Ansible (doc here: http://docs.ansible.com/ansible/intro_installation.html#latest-releases-via-pip).
+A lot of the modules I used are available only on the more recent versions.
 The latest version of ELK Stack, including Filebeat, at the moment of the development is 5.3.0-1
 This is the version installed and running in the stack.
 While Ansible will ensure the version installed is always the latest, some future upgrade may break things. For now, its working perfectly.
