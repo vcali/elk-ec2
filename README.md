@@ -68,7 +68,6 @@ What I Used
 Final Thoughts
 ==============
 
-Oracle seems to like to change its IPs every day. For that, there may be some problems during the Java download. I tried to allow instances to access all Oracle's IPs I found during the development, but the very next day some IPs changed, so an timeout error may happen :(
 For this project to run correctly, Ansible version must be the latest available (right now its the version 2.2.1.0-r0
 ). The latest version is always available on Pip repositories, which is what I used to download Ansible (doc here: http://docs.ansible.com/ansible/intro_installation.html#latest-releases-via-pip).
 A lot of the modules I used are available only on the more recent versions.
