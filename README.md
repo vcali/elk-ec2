@@ -11,9 +11,6 @@ A few observations before we start:
   * The project was made assuming that an IAM user has already been created
   * To guarantee that it will work anywhere, I used Docker, so it is a requirement
   * The user needs to insert his own AWS credentials on ./ansible/Dockerfile
-  * I made a video showing the deploy: https://www.dropbox.com/sh/w7catzpk5antxka/AACye7640mGp2edl4uQpkXPEa?dl=0
-
-I suggest the user to download it instead of opening it directly on Dropbox - the stream may decrease the video quality
 
 How It Works
 ============
